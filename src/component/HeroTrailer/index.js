@@ -14,7 +14,7 @@ const HeroTrailer = ({
 
         const timer = setTimeout(() => {
             setPlayTrailer(true);
-        }, 3000);
+        }, 3500);
 
         return () => clearTimeout(timer);
     }, [trailerKey]);

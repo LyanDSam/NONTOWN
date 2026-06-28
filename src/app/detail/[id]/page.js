@@ -1,8 +1,12 @@
 import HeroTrailer from "@/component/HeroTrailer";
+import StreamButton from "@/component/StreamButton";
 import fetchData from "@/logic/DataApi";
 import Image from "next/image";
 
 export default async function Detail({ params }) {
+    const aLERTIT = () =>{
+        alert('ON PROGRES DAWG')
+    }
     const { id } = await params;
 
     const movie = await fetchData(`/movie/${id}`);
@@ -57,7 +61,7 @@ export default async function Detail({ params }) {
                         <p className="text-lg leading-8">
                             {movie.overview}
                         </p>
-
+                        <StreamButton/>
                     </div>
 
                 </div>
