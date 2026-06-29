@@ -7,7 +7,7 @@ export default function StreamButton() {
 
   return (
     <button
-      className="p-3 bg-purple-400 rounded-2xl my-5"
+      className="p-3 bg-secondary rounded-md my-5 cursor-pointer"
       onClick={aLERTIT}
     >
       STREAM NOW
