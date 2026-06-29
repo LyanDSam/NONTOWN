@@ -30,8 +30,8 @@ const HeroTrailer = ({
     return (
         <section className="relative w-full">
             <div className="sticky top-0 h-screen w-full overflow-hidden z-10">
-                <HeroMobile title={title} overview={overview}/>
-                
+                <HeroMobile title={title} overview={overview} />
+
                 {/* Background selalu ada */}
                 <div
                     className="absolute inset-0 bg-cover bg-center"
@@ -53,7 +53,7 @@ const HeroTrailer = ({
         -translate-x-1/2
         -translate-y-1/2
       "
-                        src={`https://www.youtube-nocookie.com/embed/${trailerKey}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerKey}&rel=0`}
+                        src={`https://www.youtube-nocookie.com/embed/${trailerKey}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerKey}&rel=0&cc_load_policy=0&cc_lang_pref=en`}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
                         onError={handleIframeError}

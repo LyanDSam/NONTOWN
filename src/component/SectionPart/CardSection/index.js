@@ -2,11 +2,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Skeleton from "react-loading-skeleton";
-
-const SectionPart = ({ datas, title,redirect }) => {
+const CardSection = ({ datas, title, redirect, isTv }) => {
     const posterUrl = process.env.NEXT_PUBLIC_BASE_POSTER_URL_LOW
     datas = datas.slice(0, 12)
+    var redirectTo = '/detail/movie/'
+    if (isTv) {
+        redirectTo = '/detail/tv/'
+    }
     return (
         <div className="p-3 py-5 ">
             <div className="flex flex-row justify-between items-center py-2 px-5">
@@ -15,7 +17,7 @@ const SectionPart = ({ datas, title,redirect }) => {
             </div>
             <div className="grid md:grid-cols-6 sm:grid-cols-3 grid-cols-2">
                 {datas.map((data) => (
-                    <Link className=" py-3 px-1 flex flex-col items-center gap-1" key={data.id} href={`/detail/${data.id}`}>
+                    <Link className=" py-3 px-1 flex flex-col items-center gap-1" key={data.id} href={`${redirectTo}${data.id}`}>
                         <Image src={`${posterUrl}${data.poster_path}`} width={200} height={150} alt="..." />
                         <h2 className="text-md text-white">{data.original_title}</h2>
                     </Link>
@@ -24,4 +26,4 @@ const SectionPart = ({ datas, title,redirect }) => {
         </div>
     )
 }
-export default SectionPart
+export default CardSection

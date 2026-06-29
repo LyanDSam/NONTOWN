@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "nontown",
-  description: "web untuk nonton",
+  title: "NONTOWN",
+  description: "TONTON FILMMU DI NONTOWN!",
 };
 
 export default function RootLayout({ children }) {
