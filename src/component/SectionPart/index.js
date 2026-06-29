@@ -5,7 +5,7 @@ import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
 
 const SectionPart = ({ datas, title,redirect }) => {
-    const posterUrl = process.env.NEXT_PUBLIC_BASE_POSTER_URL
+    const posterUrl = process.env.NEXT_PUBLIC_BASE_POSTER_URL_LOW
     datas = datas.slice(0, 12)
     return (
         <div className="p-3 py-5 ">

@@ -27,22 +27,25 @@ export default async function Detail({ params }) {
         );
 
     const posterUrl =
-        process.env.NEXT_PUBLIC_BASE_POSTER_URL +
+        process.env.NEXT_PUBLIC_BASE_POSTER_URL_ORI +
         movie.poster_path;
 
     const backdropUrl =
-        process.env.NEXT_PUBLIC_BASE_POSTER_URL +
+        process.env.NEXT_PUBLIC_BASE_POSTER_URL_ORI +
         movie.backdrop_path;
 
     return (
-        <>
+        <div className="w-full overflow-visible">
+
             <HeroTrailer
                 backdropUrl={backdropUrl}
                 trailerKey={trailer?.key}
+                title={movie.title}
+                overview={movie.overview}
             >
-                <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+                <div className="flex flex-col md:flex-row items-center md:items-start gap-6 z-20">
 
-                    <div className="w-48 sm:w-56 md:w-72">
+                    <div className="w-60 sm:w-56 md:w-72">
                         <Image
                             src={posterUrl}
                             width={500}
@@ -66,17 +69,6 @@ export default async function Detail({ params }) {
 
                 </div>
             </HeroTrailer>
-
-            {/* Trailer untuk Mobile */}
-            <div className="lg:hidden max-w-6xl mx-auto p-5">
-                {trailer && (
-                    <iframe
-                        className="w-full aspect-video rounded-xl"
-                        src={`https://www.youtube.com/embed/${trailer.key}`}
-                        allowFullScreen
-                    />
-                )}
-            </div>
-        </>
+        </div>
     );
 }
