@@ -5,7 +5,7 @@ import fetchData from "@/logic/DataApi";
 export async function generateMetadata({params}) {
     const {id} = await params
     const data = await fetchData(`/tv/${id}`)
-    const title = `${data.title} — NONTOWN`
+    const title = `${data.name} — NONTOWN`
     return{
         title: title,
         description: data.overview,

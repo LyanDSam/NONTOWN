@@ -2,7 +2,7 @@
 const nextConfig = {
   /* config options here */
   reactCompiler: true,
-  images:{
+  images: {
     remotePatterns: [
       {
         protocol: "https",
@@ -13,7 +13,11 @@ const nextConfig = {
         hostname: "media.themoviedb.org",
       },
     ],
-  }
+  },
+  allowedDevOrigins: [
+    "192.168.1.4",
+    "192.168.1.3",
+  ],
 };
 
 export default nextConfig;
