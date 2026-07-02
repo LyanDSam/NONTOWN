@@ -19,6 +19,15 @@ export default async function Detail({ params }) {
 
     const videos = await fetchData(`/tv/${id}/videos`);
 
+    const rawCertification = await fetchData(`/tv/${id}/content_ratings`)
+    const certification = rawCertification.find(
+        (certif) => certif.iso_3166_1 === "ID"
+    ) ?? rawCertification.find(
+        (certif) => certif.iso_3166_1 === "US"
+    )
+    const finalCertification = certification? certification.rating : '??'
+
+
     const trailer =
         videos.find(
             (video) =>
@@ -31,7 +40,6 @@ export default async function Detail({ params }) {
                 video.site === "YouTube" &&
                 video.type === "Trailer"
         );
-
 
     const backdropUrl =
         process.env.NEXT_PUBLIC_BASE_POSTER_URL_ORI +
@@ -46,7 +54,7 @@ export default async function Detail({ params }) {
                 title={tv.name}
                 overview={tv.overview}
             >
-                <HeroDesktop movie={tv}/>
+                <HeroDesktop movie={tv} cert={finalCertification}/>
             </HeroTrailer>
         </div>
     );

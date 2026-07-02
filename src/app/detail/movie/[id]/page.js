@@ -2,11 +2,11 @@ import HeroDesktop from "@/component/HeroDesktop";
 import HeroTrailer from "@/component/HeroTrailer";
 import fetchData from "@/logic/DataApi";
 
-export async function generateMetadata({params}) {
-    const {id} = await params
+export async function generateMetadata({ params }) {
+    const { id } = await params
     const data = await fetchData(`/movie/${id}`)
     const title = `${data.title} — NONTOWN`
-    return{
+    return {
         title: title,
         description: data.overview,
     }
@@ -18,6 +18,14 @@ export default async function Detail({ params }) {
     const movie = await fetchData(`/movie/${id}`);
 
     const videos = await fetchData(`/movie/${id}/videos`);
+
+    const rawCertification = await fetchData(`/movie/${id}/release_dates`)
+    const certification = rawCertification.find(
+        (certif) => certif.iso_3166_1 === "ID"
+    ) ?? rawCertification.find(
+        (certif) => certif.iso_3166_1 === "US"
+    ) ?? rawCertification[0] 
+    const finalCertification = certification? certification.release_dates[0].certification : '??'
 
     const trailer =
         videos.find(
@@ -46,7 +54,7 @@ export default async function Detail({ params }) {
                 title={movie.title}
                 overview={movie.overview}
             >
-                <HeroDesktop movie={movie}/>
+                <HeroDesktop movie={movie} cert={finalCertification}/>
             </HeroTrailer>
         </div>
     );

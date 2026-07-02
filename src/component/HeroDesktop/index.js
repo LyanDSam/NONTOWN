@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Information from "./Information";
 
-const HeroDesktop = ({ movie }) => {
+const HeroDesktop = ({ movie, cert }) => {
     const posterUrl =
         process.env.NEXT_PUBLIC_BASE_POSTER_URL_ORI +
         movie.poster_path;
@@ -27,7 +27,7 @@ const HeroDesktop = ({ movie }) => {
 
                 </div>
 
-                <Information datas={movie} title={title}/> 
+                <Information datas={movie} title={title} certification={cert}/> 
             </div>
         </div>
     )

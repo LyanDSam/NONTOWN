@@ -1,14 +1,12 @@
 "use client"
+import Card from "@/component/Card";
 import Image from "next/image";
 import Link from "next/link";
 
-const CardSection = ({ datas, title, redirect, isTv }) => {
+const CardSection = ({ datas = [], title, redirect, isTv }) => {
     const posterUrl = process.env.NEXT_PUBLIC_BASE_POSTER_URL_LOW
-    datas = datas.slice(0, 12)
-    var redirectTo = '/detail/movie/'
-    if (isTv) {
-        redirectTo = '/detail/tv/'
-    }
+    const sliced = datas.slice(0, 12)
+
     return (
         <div className="p-3 py-5 ">
             <div className="flex flex-row justify-between items-center py-2 px-5">
@@ -16,12 +14,13 @@ const CardSection = ({ datas, title, redirect, isTv }) => {
                 <Link className=" text-md  text-white hover:text-purple-400 transition-all" href={redirect}>lihat selengkapnya</Link>
             </div>
             <div className="grid md:grid-cols-6 sm:grid-cols-3 grid-cols-2">
-                {datas.map((data) => (
-                    <Link className=" py-3 px-1 flex flex-col items-center gap-1" key={data.id} href={`${redirectTo}${data.id}`}>
-                        <Image src={`${posterUrl}${data.poster_path}`} width={200} height={150} alt="..." />
-                        <h2 className="text-md text-white">{data.original_title}</h2>
-                    </Link>
-                ))}
+                {sliced.map((data) => {
+                    const redirectTo = isTv ? '/detail/tv/' : '/detail/movie/'
+                    const cardTitle = data.title || data.name || ''
+                    return (
+                        <Card key={data.id} id={data.id} imgUrl={`${posterUrl}${data.poster_path}`} title={cardTitle} redirectTo={`${redirectTo}${data.id}`}/>
+                    )
+                })}
             </div>
         </div>
     )
